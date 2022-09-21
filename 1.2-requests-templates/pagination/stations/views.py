@@ -1,4 +1,3 @@
-import django.conf
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.conf import settings
@@ -11,10 +10,6 @@ def index(request):
 
 
 def bus_stations(request):
-    # получите текущую страницу и передайте ее в контекст
-    # также передайте в контекст список станций на странице
-
-
     with open(settings.BUS_STATION_CSV, 'r') as file:
 
         file_reader = csv.reader(file, delimiter=",")
@@ -26,7 +21,6 @@ def bus_stations(request):
     content.pop(0)
     paginator = Paginator(content, 10)
     bus_stations = paginator.get_page(page_name)
-
 
 
     context = {
